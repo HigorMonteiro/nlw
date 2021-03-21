@@ -1,5 +1,6 @@
 // Servidor
 const express = require('express')
+const config = require('./config.js');
 const server = express()
 
 const { pageLanding, pageStudy, pageGiveClasses, saveClasses } = require('./pages')
@@ -11,6 +12,7 @@ nunjucks.configure('src/views', {
     noCache: true,
 })
 
+console.log(`NODE_ENV=${config.NODE_ENV}`);
 // Inicio e Configuração do Servidor
 server
     // receber os dados do req.body
@@ -21,4 +23,6 @@ server
     .get("/give-classes", pageGiveClasses)
     .post("/save-classes", saveClasses)
     // Start do Servidor
-    .listen(80)
+    .listen(config.PORT, config.HOST, function () {
+        console.log(`App listening on http://${config.HOST}:${config.PORT}`);
+    });
