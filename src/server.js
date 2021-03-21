@@ -21,4 +21,4 @@ server
     .get("/give-classes", pageGiveClasses)
     .post("/save-classes", saveClasses)
     // Start do Servidor
-    .listen(8080)
+    .listen(80)
